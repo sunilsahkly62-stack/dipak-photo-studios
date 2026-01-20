@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>दिपक फाेटाे स्टुडीयाे</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('photo1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 10px 10px 10px;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 60px;
+            color: gold;
+            text-shadow: 2px 2px 8px #000;
+        }
+
+        header p {
+            font-size: 18px;
+            margin-top: 5px;
+            color: #f0e68c;
+        }
+
+        header .contact {
+            font-size: 18px;
+            color: #fff;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Top controls container */
+        .top-controls {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            gap: 15px;
+        }
+
+        .top-controls button, .top-controls a {
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            background: gold;
+            box-shadow: 0 0 10px #000;
+            transition: transform 0.2s;
+        }
+
+        .top-controls button:hover, .top-controls a:hover {
+            transform: scale(1.1);
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 120px 0 40px 0;
+        }
+
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            margin: 10px;
+            border-radius: 15px;
+            border: 3px solid gold;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover { transform: scale(1.1); }
+
+        .video-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .video-section video {
+            width: 80%;
+            max-width: 800px;
+            border: 5px solid gold;
+            border-radius: 15px;
+            box-shadow: 0 0 20px gold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 10px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        footer h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            color: #ffcc00;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .gallery img { width: 90%; height: auto; }
+            .video-section video { width: 95%; }
+            header h1 { font-size: 40px; }
+            footer h2 { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Controls -->
+    <div class="top-controls">
+        <button id="audioBtn">Pause Music</button>
+        <a href="https://wa.me/?text=Check%20out%20Dipak%20Photo%20Studio!" target="_blank">Share on WhatsApp</a>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="anthem" autoplay loop>
+        <source src="anthem.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Header -->
+    <header>
+        <h1>Dipak Photo Studio</h1>
+        <p>Laxmipur, Haripur Na. Pa-6, Sarlahi, Near Laxmipur 6 Wada Office Main Road</p>
+        <div class="contact">
+            Contact Person: Kailash Mahato | Phone: 9808922780
+        </div>
+    </header>
+
+    <!-- Image Gallery -->
+    <section class="gallery">
+        <img src="photo1.jpg" alt="Printing 1">
+        <img src="photo2.jpg" alt="Printing 2">
+        <img src="photo3.jpg" alt="Printing 3">
+        <img src="photo4.jpg" alt="Printing 4">
+        <img src="photo5.jpg" alt="Printing 5">
+        <img src="photo6.jpg" alt="Printing 6">
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <video controls autoplay muted loop>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>दिपक फाेटाे स्टुडीयाे</h2>
+        <p>सम्पर्क: कैलाश महतो | फोन: 9808922780</p>
+        <p>&copy; 2026 Dipak Photo Studio. All rights reserved.</p>
+    </footer>
+
+    <!-- Auto Scroll Script -->
+    <script>
+        // Slow auto-scroll
+        let scrollAmount = 0;
+        function slowScroll() {
+            scrollAmount += 0.5; // pixels per interval
+            window.scrollTo(0, scrollAmount);
+            if (scrollAmount >= document.body.scrollHeight - window.innerHeight) scrollAmount = 0;
+            requestAnimationFrame(slowScroll);
+        }
+        slowScroll();
+
+        // Audio play/pause button
+        const audio = document.getElementById('anthem');
+        const btn = document.getElementById('audioBtn');
+
+        btn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                btn.textContent = "Pause Music";
+            } else {
+                audio.pause();
+                btn.textContent = "Play Music";
+            }
+        });
+    </script>
+
+</body>
+</html>
